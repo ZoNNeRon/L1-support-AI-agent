@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "servicedesk": {
+      "command": "uv",
+      "args": ["run", "python", "mcp_servers/servicedesk/server.py"]
+    },
+    "knowledge_base": {
+      "command": "uv",
+      "args": ["run", "python", "mcp_servers/knowledge_base/server.py"]
+    },
+    "github_issues": {
+      "command": "uv",
+      "args": ["run", "python", "mcp_servers/github_issues/server.py"]
+    },
+    "telegram": {
+      "command": "uv",
+      "args": ["run", "python", "mcp_servers/telegram/server.py"]
+    }
+  }
+}
