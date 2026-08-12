@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "description": "Эталонная разметка. Ключ - текст описания заявки: в очереди 100 тикетов, но всего 23 уникальных описания, поэтому разметка 23 записей покрывает весь поток. Заголовки не размечаются намеренно - в исходных данных они перемешаны с описаниями случайно и источником истины не являются.",
+    "labeled_by": "human",
+    "fields": {
+      "category": "истинная категория по симптому",
+      "path": "KB_RESOLVE | ESCALATE_L2 | BUG_REPORT | NEED_INFO",
+      "article": "ожидаемая статья базы знаний (null, если готовой инструкции быть не должно)",
+      "impact": "single_user | team | org_wide",
+      "urgency": "workaround | degraded | blocked"
+    }
+  },
+  "labels": [
+    {"description": "Компьютер пищит при включении и не загружается.", "category": "Оборудование", "path": "KB_RESOLVE", "article": "KB-007", "impact": "single_user", "urgency": "blocked"},
+    {"description": "Программа зависает при попытке загрузить файл.", "category": "Ошибки в работе ПО", "path": "BUG_REPORT", "article": null, "impact": "single_user", "urgency": "degraded"},
+    {"description": "Прошу сбросить пароль для учетной записи.", "category": "Доступ и авторизация", "path": "KB_RESOLVE", "article": "KB-001", "impact": "single_user", "urgency": "blocked"},
+    {"description": "Нужно выдать права на чтение для модуля \"Отчеты\".", "category": "Доступ и авторизация", "path": "KB_RESOLVE", "article": "KB-004", "impact": "single_user", "urgency": "degraded"},
+    {"description": "При нажатии на кнопку \"Сохранить\" появляется белый экран.", "category": "Ошибки в работе ПО", "path": "KB_RESOLVE", "article": "KB-009", "impact": "single_user", "urgency": "blocked"},
+    {"description": "Где лежит актуальная инструкция по работе с модулем заявок?", "category": "Консультация", "path": "KB_RESOLVE", "article": "KB-014", "impact": "single_user", "urgency": "workaround"},
+    {"description": "При попытке входа пишет \"Неверный логин или пароль\".", "category": "Доступ и авторизация", "path": "KB_RESOLVE", "article": "KB-001", "impact": "single_user", "urgency": "blocked"},
+    {"description": "Нужна помощь с настройкой фильтров в таблице.", "category": "Консультация", "path": "KB_RESOLVE", "article": "KB-013", "impact": "single_user", "urgency": "workaround"},
+    {"description": "Прошу провести короткое обучение по новому релизу.", "category": "Консультация", "path": "KB_RESOLVE", "article": "KB-014", "impact": "team", "urgency": "workaround"},
+    {"description": "Не могу зайти ни на один сайт, пишет нет подключения.", "category": "Сеть и интернет", "path": "ESCALATE_L2", "article": null, "impact": "single_user", "urgency": "blocked"},
+    {"description": "Нужна замена клавиатуры, залипают клавиши.", "category": "Оборудование", "path": "KB_RESOLVE", "article": "KB-008", "impact": "single_user", "urgency": "degraded"},
+    {"description": "Принтер в кабинете 204 жует бумагу.", "category": "Оборудование", "path": "KB_RESOLVE", "article": "KB-005", "impact": "team", "urgency": "degraded"},
+    {"description": "Не работает сканер штрих-кодов.", "category": "Оборудование", "path": "KB_RESOLVE", "article": "KB-008", "impact": "single_user", "urgency": "blocked"},
+    {"description": "В отчете за прошлый месяц не сходятся суммы.", "category": "Ошибки в работе ПО", "path": "BUG_REPORT", "article": null, "impact": "team", "urgency": "degraded"},
+    {"description": "После ввода кода из СМС ничего не происходит.", "category": "Доступ и авторизация", "path": "KB_RESOLVE", "article": "KB-003", "impact": "single_user", "urgency": "blocked"},
+    {"description": "Система пишет, что аккаунт заблокирован из-за неверных попыток входа.", "category": "Доступ и авторизация", "path": "KB_RESOLVE", "article": "KB-002", "impact": "single_user", "urgency": "blocked"},
+    {"description": "Внутренний корпоративный портал недоступен.", "category": "Сеть и интернет", "path": "ESCALATE_L2", "article": null, "impact": "org_wide", "urgency": "blocked"},
+    {"description": "Очень низкая скорость загрузки файлов из сетевой папки.", "category": "Сеть и интернет", "path": "ESCALATE_L2", "article": null, "impact": "team", "urgency": "degraded"},
+    {"description": "Подскажите, как правильно сформировать годовой отчет?", "category": "Консультация", "path": "KB_RESOLVE", "article": "KB-012", "impact": "single_user", "urgency": "workaround"},
+    {"description": "Монитор мерцает.", "category": "Оборудование", "path": "KB_RESOLVE", "article": "KB-006", "impact": "single_user", "urgency": "degraded"},
+    {"description": "Постоянно вылетает с ошибкой \"Time out\".", "category": "Ошибки в работе ПО", "path": "BUG_REPORT", "article": null, "impact": "single_user", "urgency": "blocked"},
+    {"description": "Не могу подключиться к рабочему Wi-Fi с ноутбука.", "category": "Сеть и интернет", "path": "KB_RESOLVE", "article": "KB-010", "impact": "single_user", "urgency": "blocked"},
+    {"description": "После обновления интерфейс отображается криво.", "category": "Ошибки в работе ПО", "path": "KB_RESOLVE", "article": "KB-009", "impact": "single_user", "urgency": "degraded"}
+  ]
+}

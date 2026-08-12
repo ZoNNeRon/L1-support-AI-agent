@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Окружение
+.venv/
+.env
+
+# OS / editor
+.DS_Store
+.vscode/
+
+# Результаты прогонов агента
+data/shadow/
+data/github/issues.json
+data/telegram/messages.json

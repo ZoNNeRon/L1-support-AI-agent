@@ -1,0 +1,193 @@
+{
+  "top-1 accuracy": 1.0,
+  "top-3 accuracy": 1.0,
+  "routing_accuracy": 0.9130434782608695,
+  "false_resolve": 0,
+  "missed_resolve": 2,
+  "rows": [
+    {
+      "description": "Компьютер пищит при включении и не загружается.",
+      "expected_article": "KB-007",
+      "top1": "KB-007",
+      "conf": 0.99,
+      "expected_path": "KB_RESOLVE",
+      "verdict": "OK"
+    },
+    {
+      "description": "Программа зависает при попытке загрузить файл.",
+      "expected_article": "-",
+      "top1": "KB-002",
+      "conf": 0.63,
+      "expected_path": "BUG_REPORT",
+      "verdict": "OK"
+    },
+    {
+      "description": "Прошу сбросить пароль для учетной записи.",
+      "expected_article": "KB-001",
+      "top1": "KB-001",
+      "conf": 0.73,
+      "expected_path": "KB_RESOLVE",
+      "verdict": "MISS"
+    },
+    {
+      "description": "Нужно выдать права на чтение для модуля \"Отчеты\"",
+      "expected_article": "KB-004",
+      "top1": "KB-004",
+      "conf": 0.91,
+      "expected_path": "KB_RESOLVE",
+      "verdict": "OK"
+    },
+    {
+      "description": "При нажатии на кнопку \"Сохранить\" появляется бел",
+      "expected_article": "KB-009",
+      "top1": "KB-009",
+      "conf": 0.88,
+      "expected_path": "KB_RESOLVE",
+      "verdict": "OK"
+    },
+    {
+      "description": "Где лежит актуальная инструкция по работе с моду",
+      "expected_article": "KB-014",
+      "top1": "KB-014",
+      "conf": 0.94,
+      "expected_path": "KB_RESOLVE",
+      "verdict": "OK"
+    },
+    {
+      "description": "При попытке входа пишет \"Неверный логин или паро",
+      "expected_article": "KB-001",
+      "top1": "KB-001",
+      "conf": 0.73,
+      "expected_path": "KB_RESOLVE",
+      "verdict": "MISS"
+    },
+    {
+      "description": "Нужна помощь с настройкой фильтров в таблице.",
+      "expected_article": "KB-013",
+      "top1": "KB-013",
+      "conf": 0.94,
+      "expected_path": "KB_RESOLVE",
+      "verdict": "OK"
+    },
+    {
+      "description": "Прошу провести короткое обучение по новому релиз",
+      "expected_article": "KB-014",
+      "top1": "KB-014",
+      "conf": 0.93,
+      "expected_path": "KB_RESOLVE",
+      "verdict": "OK"
+    },
+    {
+      "description": "Не могу зайти ни на один сайт, пишет нет подключ",
+      "expected_article": "-",
+      "top1": "KB-010",
+      "conf": 0.63,
+      "expected_path": "ESCALATE_L2",
+      "verdict": "OK"
+    },
+    {
+      "description": "Нужна замена клавиатуры, залипают клавиши.",
+      "expected_article": "KB-008",
+      "top1": "KB-008",
+      "conf": 0.92,
+      "expected_path": "KB_RESOLVE",
+      "verdict": "OK"
+    },
+    {
+      "description": "Принтер в кабинете 204 жует бумагу.",
+      "expected_article": "KB-005",
+      "top1": "KB-005",
+      "conf": 0.99,
+      "expected_path": "KB_RESOLVE",
+      "verdict": "OK"
+    },
+    {
+      "description": "Не работает сканер штрих-кодов.",
+      "expected_article": "KB-008",
+      "top1": "KB-008",
+      "conf": 0.97,
+      "expected_path": "KB_RESOLVE",
+      "verdict": "OK"
+    },
+    {
+      "description": "В отчете за прошлый месяц не сходятся суммы.",
+      "expected_article": "-",
+      "top1": "KB-012",
+      "conf": 0.63,
+      "expected_path": "BUG_REPORT",
+      "verdict": "OK"
+    },
+    {
+      "description": "После ввода кода из СМС ничего не происходит.",
+      "expected_article": "KB-003",
+      "top1": "KB-003",
+      "conf": 0.97,
+      "expected_path": "KB_RESOLVE",
+      "verdict": "OK"
+    },
+    {
+      "description": "Система пишет, что аккаунт заблокирован из-за не",
+      "expected_article": "KB-002",
+      "top1": "KB-002",
+      "conf": 0.93,
+      "expected_path": "KB_RESOLVE",
+      "verdict": "OK"
+    },
+    {
+      "description": "Внутренний корпоративный портал недоступен.",
+      "expected_article": "-",
+      "top1": "KB-009",
+      "conf": 0.6,
+      "expected_path": "ESCALATE_L2",
+      "verdict": "OK"
+    },
+    {
+      "description": "Очень низкая скорость загрузки файлов из сетевой",
+      "expected_article": "-",
+      "top1": "KB-012",
+      "conf": 0.54,
+      "expected_path": "ESCALATE_L2",
+      "verdict": "OK"
+    },
+    {
+      "description": "Подскажите, как правильно сформировать годовой о",
+      "expected_article": "KB-012",
+      "top1": "KB-012",
+      "conf": 0.93,
+      "expected_path": "KB_RESOLVE",
+      "verdict": "OK"
+    },
+    {
+      "description": "Монитор мерцает.",
+      "expected_article": "KB-006",
+      "top1": "KB-006",
+      "conf": 0.95,
+      "expected_path": "KB_RESOLVE",
+      "verdict": "OK"
+    },
+    {
+      "description": "Постоянно вылетает с ошибкой \"Time out\".",
+      "expected_article": "-",
+      "top1": "-",
+      "conf": 0.0,
+      "expected_path": "BUG_REPORT",
+      "verdict": "OK"
+    },
+    {
+      "description": "Не могу подключиться к рабочему Wi-Fi с ноутбука",
+      "expected_article": "KB-010",
+      "top1": "KB-010",
+      "conf": 0.98,
+      "expected_path": "KB_RESOLVE",
+      "verdict": "OK"
+    },
+    {
+      "description": "После обновления интерфейс отображается криво.",
+      "expected_article": "KB-009",
+      "top1": "KB-009",
+      "conf": 0.96,
+      "expected_path": "KB_RESOLVE",
+      "verdict": "OK"
+    }
+  ]
+}
