@@ -177,38 +177,71 @@ def compute_priority(impact: str, urgency: str, text: str) -> tuple[str, dict]:
 
 
 @mcp.tool()
-def reply_to_ticket(ticket_id: str, message: str, kb_article_ids: list[str],
+def reply_to_ticket(ticket_id: str, message: str, kb_article_ids: list[str] | None = None,
+                    reply_kind: str = "solution",
                     close_ticket: bool = False, confidence: float = 0.0) -> dict:
     """
     Отправить ответ пользователю.
 
-    kb_article_ids обязателен: ответ первой линии должен опираться на статью базы
-    знаний, а не на догадку модели (policies/guardrails.yaml -> require_kb_citation).
-    Автозакрытие блокируется, если уверенность ниже порога - тикет останется
-    в статусе «Ожидание ответа» и попадёт человеку.
+    reply_kind определяет, что это за сообщение, и от него зависят требования:
+
+      solution       решение проблемы. Обязателен kb_article_ids: инструкция
+                     должна опираться на статью базы знаний, а не на догадку
+                     модели. Только такой ответ может закрыть заявку.
+      status_update  уведомление о ходе работы - «дефект подтверждён и передан
+                     в разработку», «инцидент у профильного инженера». Ссылка
+                     на статью не нужна, потому что решения здесь нет.
+                     Разрешён только когда действие реально выполнено.
+      clarification  уточняющий вопрос, когда данных не хватает (маршрут
+                     NEED_INFO). Ссылка не нужна, заявка остаётся открытой.
+
+    Автозакрытие возможно только для solution и блокируется, если уверенность
+    ниже порога - тикет останется в статусе «Ожидание ответа» и попадёт человеку.
     """
 
+    refs = kb_article_ids or []
     t = store.get(ticket_id)
     if not t:
         return {"error": f"Тикет {ticket_id} не найден"}
-    if GUARDRAILS["grounding"]["require_kb_citation"] and not kb_article_ids:
-        return {"error": "Ответ без ссылки на статью базы знаний запрещён политикой grounding"}
+
+    grounding = GUARDRAILS["grounding"]
+    kinds = set(grounding["require_kb_citation_for"]) | set(grounding["non_closing_kinds"])
+    if reply_kind not in kinds:
+        return {"error": f"Недопустимый reply_kind. Доступно: {sorted(kinds)}"}
+
+    if reply_kind in grounding["require_kb_citation_for"] and not refs:
+        return {"error": "Ответ с решением обязан ссылаться на статью базы знаний. "
+                         "Если подходящей статьи нет - это не решение: используй "
+                         "reply_kind='status_update' или 'clarification', "
+                         "но не подставляй произвольную статью."}
+
+    # «Уведомление о статусе» законно только тогда, когда статус действительно
+    # изменился: заявка эскалирована или по ней заведён баг-репорт.
+    if reply_kind == "status_update":
+        done = set(t.get("_agent", {})) & set(grounding["status_update_requires_action"])
+        if not done:
+            return {"error": "status_update разрешён после реального действия по заявке "
+                             "(эскалация или баг-репорт). Сейчас по ней ничего не сделано."}
 
     threshold = GUARDRAILS["confidence"]["auto_close_min"]
-    blocked = close_ticket and confidence < threshold
-    status = "Решена" if (close_ticket and not blocked) else "Ожидание ответа"
+    may_close = reply_kind not in grounding["non_closing_kinds"]
+    blocked = close_ticket and may_close and confidence < threshold
+    status = "Решена" if (close_ticket and may_close and not blocked) else "Ожидание ответа"
 
     store.patch(ticket_id, {"status": status}, actor="l1-agent",
-                reason=f"Ответ пользователю, источники: {kb_article_ids}")
+                reason=f"Ответ пользователю ({reply_kind}), источники: {refs or '-'}")
     store.annotate(ticket_id, "reply", {
-        "message": message, "kb_article_ids": kb_article_ids,
+        "message": message, "kb_article_ids": refs, "reply_kind": reply_kind,
         "confidence": confidence, "auto_closed": status == "Решена",
     })
-    audit("ticket.reply", ticket_id=ticket_id, kb_refs=kb_article_ids,
+    audit("ticket.reply", ticket_id=ticket_id, kb_refs=refs, reply_kind=reply_kind,
           confidence=confidence, auto_closed=status == "Решена")
 
     out = {"ok": True, "ticket_id": ticket_id, "status": status,
-           "cited_articles": kb_article_ids}
+           "reply_kind": reply_kind, "cited_articles": refs}
+    if close_ticket and not may_close:
+        out["note"] = (f"Ответ вида {reply_kind} заявку не закрывает - "
+                       "решение по ней ещё не предоставлено.")
     if blocked:
         out["guardrail"] = (
             f"Автозакрытие заблокировано: confidence {confidence} < {threshold}. "

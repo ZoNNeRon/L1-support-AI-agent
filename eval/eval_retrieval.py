@@ -37,17 +37,17 @@ RESULTS = ROOT / "eval" / "results_retrieval.json"
 
 
 def main() -> int:
-    kb = KnowledgeBase()
+    # published_only: базовая линия меряется по проверенной человеком базе.
+    # Черновики, написанные агентом в контуре самообучения, доступны ему
+    # в работе, но в эталон не входят - иначе метрика менялась бы после
+    # каждого прогона и перестала быть сравнимой.
+    kb = KnowledgeBase(published_only=True)
     labels = REFERENCE["labels"]
     rows, top1acc, top3acc, n_article = [], 0, 0, 0
     routing_ok = false_resolve = missed_resolve = 0
 
     for lb in labels:
-        # include_drafts=False - базовая линия меряется по проверенной человеком
-        # базе. Черновики, написанные агентом в контуре самообучения, доступны
-        # ему в работе, но в эталон не входят: иначе базовая линия менялась бы
-        # после каждого прогона и перестала быть сравнимой.
-        hits = kb.search(lb["description"], top_k=3, include_drafts=False)
+        hits = kb.search(lb["description"], top_k=3)
         ids = [a.id for a, _ in hits]
         conf = normalised_confidence([s for _, s in hits])
 
@@ -76,10 +76,11 @@ def main() -> int:
         })
 
     n = len(labels)
-    drafts = [a for a in kb.articles if a.status != "published"]
+    # kb собран только из проверенных статей, поэтому черновики считаем по диску.
+    drafts = len(KnowledgeBase().articles) - len(kb.articles)
     print(f"\nЭталонных описаний: {n} (покрывают 100 тикетов очереди)")
-    print(f"Статей в базе знаний: {len(kb.articles) - len(drafts)} проверенных"
-          + (f", черновиков агента: {len(drafts)} (в базовую линию не входят)" if drafts else ""))
+    print(f"Статей в базе знаний: {len(kb.articles)} проверенных"
+          + (f", черновиков агента: {drafts} (в базовую линию не входят)" if drafts else ""))
     print(f"Порог автозакрытия: {AUTO_CLOSE}\n")
     print(f"{'описание':<50}{'эталон':<10}{'top1':<10}{'conf':<7}{'вердикт'}")
     print("-" * 100)

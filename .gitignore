@@ -17,3 +17,6 @@ dist/
 data/shadow/
 data/github/issues.json
 data/telegram/messages.json
+# Входящие из реального Telegram: содержат имена и идентификаторы
+# участников переписки, в репозиторий попадать не должны
+data/telegram/inbox.json

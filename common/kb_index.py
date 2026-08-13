@@ -140,9 +140,23 @@ class KnowledgeBase:
     # Если B = 0.0, длина статьи вообще не учитывается.
     B = 0.75
 
-    def __init__(self, kb_dir: pathlib.Path = KB_DIR) -> None:
+    def __init__(self, kb_dir: pathlib.Path = KB_DIR, published_only: bool = False) -> None:
+        """
+        published_only исключает черновики агента ещё на этапе загрузки корпуса.
+
+        Именно на этапе загрузки, а не при фильтрации выдачи: BM25 считает idf
+        и среднюю длину документа по всему корпусу, поэтому новая статья меняет
+        частоты слов и сдвигает ранжирование даже в чужих темах. Отбросить
+        черновик только из результатов недостаточно - метрика всё равно поедет.
+
+        Агент работает с полным корпусом (черновик доступен ему сразу),
+        базовая линия eval считается по проверенной человеком базе.
+        """
+
         self.dir = kb_dir
-        self.articles = [_parse(p) for p in sorted(kb_dir.glob("*.md"))]
+        articles = [_parse(p) for p in sorted(kb_dir.glob("*.md"))]
+        self.articles = ([a for a in articles if a.status == "published"]
+                         if published_only else articles)
         self._build()
 
     def _build(self) -> None:
