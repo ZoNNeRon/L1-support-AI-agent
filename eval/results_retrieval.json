@@ -33,7 +33,7 @@
       "description": "Нужно выдать права на чтение для модуля \"Отчеты\"",
       "expected_article": "KB-004",
       "top1": "KB-004",
-      "conf": 0.91,
+      "conf": 0.9,
       "expected_path": "KB_RESOLVE",
       "verdict": "OK"
     },
@@ -49,7 +49,7 @@
       "description": "Где лежит актуальная инструкция по работе с моду",
       "expected_article": "KB-014",
       "top1": "KB-014",
-      "conf": 0.94,
+      "conf": 0.95,
       "expected_path": "KB_RESOLVE",
       "verdict": "OK"
     },
@@ -73,7 +73,7 @@
       "description": "Прошу провести короткое обучение по новому релиз",
       "expected_article": "KB-014",
       "top1": "KB-014",
-      "conf": 0.93,
+      "conf": 0.92,
       "expected_path": "KB_RESOLVE",
       "verdict": "OK"
     },
@@ -144,8 +144,8 @@
     {
       "description": "Очень низкая скорость загрузки файлов из сетевой",
       "expected_article": "-",
-      "top1": "KB-012",
-      "conf": 0.54,
+      "top1": "KB-007",
+      "conf": 0.58,
       "expected_path": "ESCALATE_L2",
       "verdict": "OK"
     },

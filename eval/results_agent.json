@@ -1,0 +1,143 @@
+{
+  "category_accuracy": 1.0,
+  "route_accuracy": 1.0,
+  "priority_mae": 0.2,
+  "priority_exact": 0.8,
+  "grounding_rate": 1.0,
+  "auto_close_rate": 0.6666666666666666,
+  "cat_need": 0,
+  "cat_fixed": 0,
+  "cat_missed": 0,
+  "cat_broken": 0,
+  "prio_need": 6,
+  "prio_fixed": 5,
+  "prio_missed": 1,
+  "prio_broken": 1,
+  "processed": 10,
+  "confidence_raised": 3,
+  "guardrail_violations": 0,
+  "by_resolution_path": {
+    "KB_RESOLVE": 5,
+    "BUG_REPORT": 3,
+    "ESCALATE_L2": 2
+  },
+  "violations": [],
+  "rows": [
+    {
+      "ticket_id": "1",
+      "category": "Оборудование",
+      "priority": "Средний",
+      "path": "KB_RESOLVE",
+      "confidence": 0.9,
+      "expected_category": "Оборудование",
+      "expected_path": "KB_RESOLVE",
+      "expected_priority": "Средний",
+      "priority_diff": 0
+    },
+    {
+      "ticket_id": "3",
+      "category": "Доступ и авторизация",
+      "priority": "Средний",
+      "path": "KB_RESOLVE",
+      "confidence": 0.92,
+      "expected_category": "Доступ и авторизация",
+      "expected_path": "KB_RESOLVE",
+      "expected_priority": "Средний",
+      "priority_diff": 0,
+      "search_confidence": 0.73,
+      "reply_confidence": 0.9
+    },
+    {
+      "ticket_id": "7",
+      "category": "Доступ и авторизация",
+      "priority": "Средний",
+      "path": "KB_RESOLVE",
+      "confidence": 0.78,
+      "expected_category": "Доступ и авторизация",
+      "expected_path": "KB_RESOLVE",
+      "expected_priority": "Средний",
+      "priority_diff": 0,
+      "search_confidence": 0.73,
+      "reply_confidence": 0.8
+    },
+    {
+      "ticket_id": "12",
+      "category": "Доступ и авторизация",
+      "priority": "Средний",
+      "path": "KB_RESOLVE",
+      "confidence": 0.78,
+      "expected_category": "Доступ и авторизация",
+      "expected_path": "KB_RESOLVE",
+      "expected_priority": "Средний",
+      "priority_diff": 0,
+      "search_confidence": 0.73,
+      "reply_confidence": 0.8
+    },
+    {
+      "ticket_id": "14",
+      "category": "Оборудование",
+      "priority": "Низкий",
+      "path": "KB_RESOLVE",
+      "confidence": 0.85,
+      "expected_category": "Оборудование",
+      "expected_path": "KB_RESOLVE",
+      "expected_priority": "Низкий",
+      "priority_diff": 0
+    },
+    {
+      "ticket_id": "21",
+      "category": "Ошибки в работе ПО",
+      "priority": "Средний",
+      "path": "BUG_REPORT",
+      "confidence": 0.8,
+      "expected_category": "Ошибки в работе ПО",
+      "expected_path": "BUG_REPORT",
+      "expected_priority": "Средний",
+      "priority_diff": 0
+    },
+    {
+      "ticket_id": "26",
+      "category": "Сеть и интернет",
+      "priority": "Низкий",
+      "path": "ESCALATE_L2",
+      "confidence": 0.8,
+      "expected_category": "Сеть и интернет",
+      "expected_path": "ESCALATE_L2",
+      "expected_priority": "Средний",
+      "priority_diff": 1
+    },
+    {
+      "ticket_id": "44",
+      "category": "Ошибки в работе ПО",
+      "priority": "Средний",
+      "path": "BUG_REPORT",
+      "confidence": 0.8,
+      "expected_category": "Ошибки в работе ПО",
+      "expected_path": "BUG_REPORT",
+      "expected_priority": "Средний",
+      "priority_diff": 0
+    },
+    {
+      "ticket_id": "74",
+      "category": "Ошибки в работе ПО",
+      "priority": "Средний",
+      "path": "BUG_REPORT",
+      "confidence": 0.75,
+      "expected_category": "Ошибки в работе ПО",
+      "expected_path": "BUG_REPORT",
+      "expected_priority": "Низкий",
+      "priority_diff": 1
+    },
+    {
+      "ticket_id": "97",
+      "category": "Сеть и интернет",
+      "priority": "Критический",
+      "path": "ESCALATE_L2",
+      "confidence": 0.82,
+      "expected_category": "Сеть и интернет",
+      "expected_path": "ESCALATE_L2",
+      "expected_priority": "Критический",
+      "priority_diff": 0
+    }
+  ]
+}

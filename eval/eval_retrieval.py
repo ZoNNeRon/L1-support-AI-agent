@@ -43,7 +43,11 @@ def main() -> int:
     routing_ok = false_resolve = missed_resolve = 0
 
     for lb in labels:
-        hits = kb.search(lb["description"], top_k=3)
+        # include_drafts=False - базовая линия меряется по проверенной человеком
+        # базе. Черновики, написанные агентом в контуре самообучения, доступны
+        # ему в работе, но в эталон не входят: иначе базовая линия менялась бы
+        # после каждого прогона и перестала быть сравнимой.
+        hits = kb.search(lb["description"], top_k=3, include_drafts=False)
         ids = [a.id for a, _ in hits]
         conf = normalised_confidence([s for _, s in hits])
 
@@ -72,8 +76,10 @@ def main() -> int:
         })
 
     n = len(labels)
+    drafts = [a for a in kb.articles if a.status != "published"]
     print(f"\nЭталонных описаний: {n} (покрывают 100 тикетов очереди)")
-    print(f"Статей в базе знаний: {len(kb.articles)}")
+    print(f"Статей в базе знаний: {len(kb.articles) - len(drafts)} проверенных"
+          + (f", черновиков агента: {len(drafts)} (в базовую линию не входят)" if drafts else ""))
     print(f"Порог автозакрытия: {AUTO_CLOSE}\n")
     print(f"{'описание':<50}{'эталон':<10}{'top1':<10}{'conf':<7}{'вердикт'}")
     print("-" * 100)
